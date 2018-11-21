@@ -10,3 +10,6 @@ value is an object containing:
   3. data entered
   
 This key value pair is then used to fetch the data and display in the output.html page.  
+
+To Save: Press Ctrl + Shift + S
+To come out of the modal box: Press Esc key
