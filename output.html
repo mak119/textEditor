@@ -98,7 +98,7 @@ function Makopen(e)
 var span = document.getElementsByClassName("close")[0];
      
     modal.style.display = "block";
-     debugger;
+//      debugger;
      var key = event.target.parentNode.children[5].innerText;
         document.getElementById("modalContent").innerHTML = JSON.parse(window.localStorage.getItem(key))._text;
         
@@ -113,7 +113,7 @@ window.addEventListener("keydown", function(e) {
 
 function Makclose()
 {
-    debugger;
+//     debugger;
  var modal = document.getElementById('myModal');
     modal.style.display = "none";
 
@@ -121,7 +121,7 @@ function Makclose()
 
         var arr = [];
         function lo(){
-            debugger;
+//             debugger;
             window.localStorage.removeItem("null");
 
 //================================iterating through local storage ======================================//
@@ -135,10 +135,10 @@ function Makclose()
 //=====================================================================================================//                                    
 for( x in arr)
         {
-            debugger;
+//             debugger;
             var key = arr[x];
             var doc =  window.localStorage.getItem(key);
-            debugger;
+//             debugger;
             var _data = JSON.parse(doc);
             var _fileName = _data.fileName;
             if(_fileName!=null || _fileName != "null" || _fileName != "")
