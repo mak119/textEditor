@@ -40,8 +40,9 @@
         }
 
 window.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 83) {
-    console.log("Ctrl + Shift + s shortcut combination was pressed");
+  if (e.ctrlKey && e.keyCode == 83) {
+      e.preventDefault();
+    console.log("Ctrl + s shortcut combination was pressed");
     saveContent();
 
   }
