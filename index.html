@@ -52,8 +52,6 @@
                 console.log("not saved");
             }
             else {
-                    // window.localStorage.setItem(fileName, para);
-                    // window.localStorage.setItem("count", count);
                     var data={ fileName: fileName, _text: para, "count": count };
                     var key = Math.random();
                     localStorage.setItem(`data${key}`, JSON.stringify(data));
@@ -64,7 +62,6 @@ window.addEventListener("keydown", function(e) {
   if (e.ctrlKey && e.shiftKey && e.keyCode == 83) {
     console.log("Ctrl + Shift + s shortcut combination was pressed");
     saveContent();
-    // Process the event here (such as click on submit button)
   }
 }, false);
 
@@ -79,11 +76,6 @@ function submit()
                 var count=document.getElementById("text").innerText.length;
                 document.getElementById("_count").innerHTML = count-1;   
             }
-                    //======================================================================= //
-                            // direct html format output of text trix-editor area //
-                    //======================================================================= //
-
-// console.log(document.getElementById("text").innerHTML);
 
 </script>
 </head>
