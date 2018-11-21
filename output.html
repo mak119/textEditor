@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery-3.3.1.min.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Output</title>
+
+    <style>
+        body{
+            background-color: #f5f5f5ad;
+        }
+        header{
+            height: 30px;
+            background-color: #d6d3d3;
+        }
+        #cont{
+            margin: 40px;
+        }
+        .container{
+            height: 800px;
+        }
+        .items{
+            height: 190px;
+            border: 1px solid #d2d3d4b8;
+            margin: 10px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 2;
+            padding: 10px 10px 15px 10px;
+            box-shadow: 2px 3px #d4d0d085;
+        }
+        ._ic{
+            height: 30px;
+            width:30px;
+        }
+        #myBtn{
+            height: 20px;
+            width:20px;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+
+
+        /* ================================================================== */
+        /* =================================================================== */
+        /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+    </style>
+    <script>
+    //   ======================================open Modal=============================//
+function Makopen(e)
+{
+ var modal = document.getElementById('myModal');
+    var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+     
+    modal.style.display = "block";
+     debugger;
+     var key = event.target.parentNode.children[5].innerText;
+        document.getElementById("modalContent").innerHTML = JSON.parse(window.localStorage.getItem(key))._text;
+        
+}
+window.addEventListener("keydown", function(e) {
+  if (e.keyCode == 27) {
+    console.log("Esc shortcut combination was pressed");
+    Makclose();
+    // Process the event here (such as click on submit button)
+  }
+}, false);
+
+function Makclose()
+{
+    debugger;
+ var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+
+}
+
+        var arr = [];
+        function lo(){
+            debugger;
+            window.localStorage.removeItem("null");
+
+//================================iterating through local storage ======================================//
+                            
+                                for (var i = 0; i < localStorage.length; i++) {
+                                    // set iteration key name
+                                    arr[i] = localStorage.key(i);
+                                    // console.log the iteration key and value    
+                                    console.log('Array of keys: ' + arr );  
+                                    }
+//=====================================================================================================//                                    
+for( x in arr)
+        {
+            debugger;
+            var key = arr[x];
+            var doc =  window.localStorage.getItem(key);
+            debugger;
+            var _data = JSON.parse(doc);
+            var _fileName = _data.fileName;
+            if(_fileName!=null || _fileName != "null" || _fileName != "")
+            {
+                var _count = _data.count;
+                var newDoc = `            <div class="col-lg-3 items"> <img src="https://img.icons8.com/metro/50/000000/document.png" class="_ic"><img id="myBtn" class="myBtn" onclick="Makopen(event)" src="https://img.icons8.com/cotton/50/000000/visible.png"> <h2>${_fileName}</h2> <p> ${_count} words</p> <button class="btn btn-success">Order</button> <span hidden>${key}</span>
+                </div>` ;
+                $('#cont').append(newDoc);
+            }
+        }
+    }
+    </script>
+</head>
+<body onload="lo()">
+    <!-- <div id="output"></div> -->
+    <header class="col-lg-12"></header>
+    <div class="col-lg-2"></div>
+    <div class="container col-lg-8">
+
+        <div class="row" id="cont">
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" id="modalContent">
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Editor</title>
+
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <style>
+            header{
+                height: 30px;
+                background-color: #d6d3d3;
+            }
+            footer{
+                background-color: #d6d3d35c;
+                vertical-align: middle;
+            }
+            td{
+                float:left;
+            }
+
+            .editor{
+                margin: 10px;
+                border: 1px solid #c5c1c16e;
+                padding: 0px 20px 0px 20px;
+            }
+
+            .trix-editor{
+                min-height: 354px !important;
+            }
+        </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
+
+
+<script src="angular-trix.min.js"></script>
+<script src="app.js"></script>
+<script>
+    setInterval(saveContent, 60000);    
+   function saveContent(e)
+        {
+            // debugger;
+            console.log(document.getElementById("text").innerHTML);
+            var para = document.getElementById("text").innerHTML;
+            var count = document.getElementById("text").innerText.length;
+    
+            var fileName=prompt("Please enter a file name", "Mayank Arya");
+            if (fileName == null || fileName == "")
+            {
+                console.log("not saved");
+            }
+            else {
+                    // window.localStorage.setItem(fileName, para);
+                    // window.localStorage.setItem("count", count);
+                    var data={ fileName: fileName, _text: para, "count": count };
+                    var key = Math.random();
+                    localStorage.setItem(`data${key}`, JSON.stringify(data));
+            }
+        }
+
+window.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 83) {
+    console.log("Ctrl + Shift + s shortcut combination was pressed");
+    saveContent();
+    // Process the event here (such as click on submit button)
+  }
+}, false);
+
+function submit()
+{
+
+}
+            setInterval(check, 5000);
+            function check()
+            {
+                // debugger;
+                var count=document.getElementById("text").innerText.length;
+                document.getElementById("_count").innerHTML = count-1;   
+            }
+                    //======================================================================= //
+                            // direct html format output of text trix-editor area //
+                    //======================================================================= //
+
+// console.log(document.getElementById("text").innerHTML);
+
+</script>
+</head>
+<body onload="">
+<header class="col-lg-12"></header>
+    <div class="col-lg-2"></div>
+<div class="container col-lg-8 editor">
+    
+    <div ng-app="App">
+        <div ng-controller="AppController">
+        
+        <button type="button" onclick="saveContent(event)" style="left: 520px;
+                                                            top: 29px;
+                                                            position: relative;
+                                                            height: 29.5px;
+                                                            width: 40px;
+                                                            background: #fff;
+                                                            border: none;
+                                                            border-bottom: 1px solid #544f4f;
+                                                            border-top: 1px solid #cac5c5;
+                                                            border-right: 1px solid #d2d1d1;
+                                                            border-left: 1px solid #d6d3d3;
+                                                            border-radius: 10%;
+                                                            text-align: center;">
+            <img src="https://img.icons8.com/material-outlined/50/000000/save.png" style="height: 25px;
+                                                                                            width: 25px;
+                                                                                            opacity: 0.70;"></button>
+
+    <form ng-submit="submit()" action="">    <trix-editor class="trix-editor" angular-trix id="text" ng-model="trix"></trix-editor>  </form>
+<!--  <input type="submit" value="Submit" click="submit()"> -->
+    <footer>
+        
+        <table class="table table-bordered table-hover">
+                <tr>
+                    <td>Word Count:</td>
+                    <td><div id="_count"> 0 </div></td>
+                </tr>
+        </table>
+    </footer>
+</div>
+</body>
+</html>
